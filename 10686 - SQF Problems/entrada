@@ -1,0 +1,32 @@
+7
+0
+There are no categories in here.
+
+3
+NeverOne 0 1
+NeverTwo 1 2
+dummy
+NeverThree 2 2
+dummy
+dummy
+This is a text where the word dummy apears twice!
+Because I've added a dummy line.
+
+2
+AlwaysOne 0 0
+AlwaysTwo 1 0
+xantippe
+Xantippe has a capital 'X'!
+
+1
+NoText 1 1
+text
+
+1
+NoTextToo 0 0
+
+0
+
+1
+Always 0 0
+The previous case had no categories and no text.

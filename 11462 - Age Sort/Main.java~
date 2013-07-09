@@ -1,0 +1,37 @@
+import java.io.*;
+import java.util.*;
+
+public class Main
+{
+	public static void main(String... args)throws Exception
+	{
+		BufferedReader in=new BufferedReader(new InputStreamReader(System.in));
+		PrintWriter o=new PrintWriter(new OutputStreamReader(System.out));
+
+		while(true)
+		{
+			boolean gay=false;
+			int n=new Integer(in.readLine());
+			if(n==0)
+				break;
+
+			int a[]=new int[101];
+
+			Scanner sc=new Scanner(in.readLine());
+
+			for(int i=0;i<n;i++)
+				a[sc.nextInt()]++;
+			
+			for(int i=1;i<101;i++)
+				while(a[i]-->0)
+				{
+					if(gay)
+						o.print(" ");
+					gay=true;	
+					o.print(i);
+				}
+			o.println();
+			o.flush();
+		}
+	}
+}

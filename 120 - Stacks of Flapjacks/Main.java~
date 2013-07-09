@@ -1,0 +1,124 @@
+import java.io.*;
+import java.util.*;
+
+public class Main
+{
+	public static void main(String... args)
+	{
+		try
+		{
+			BufferedReader in=new BufferedReader(new InputStreamReader(System.in));
+			PrintWriter o=new PrintWriter(new OutputStreamWriter(System.out));
+			
+			String entrada;
+			
+			while((entrada=in.readLine())!=null)
+			{
+				boolean puto=false;
+				Scanner sc=new Scanner(entrada);
+				
+				Stack<Integer> st=new Stack<Integer>();
+				ArrayList<Integer> a=new ArrayList<Integer>();
+				
+				while(sc.hasNextInt())
+				{
+					int n=sc.nextInt();
+					//st.push(n);
+					a.add(n);
+				}
+				
+				for(int i=a.size()-1;i>=0;i--)
+					st.push(a.get(i));
+				
+				o.print(a.get(0));
+				
+				for(int i=1;i<a.size();i++)
+					o.print(" "+a.get(i));
+				o.println();
+				
+				Collections.sort(a, new Comparator<Integer>(){
+					public int compare(Integer uno, Integer dos)
+					{
+						return uno - dos;
+					}
+				});
+				
+				int ordenado[]=new int[a.size()];
+				for(int i=0;i<a.size();i++)
+					ordenado[i]=a.get(i);
+				
+				Collections.sort(a, new Comparator<Integer>(){
+					public int compare(Integer uno, Integer dos)
+					{
+						return dos - uno;
+					}
+				});
+				
+				/*for(int i=0;i<a.size();i++)
+					o.print(a.get(i));
+				o.println();
+				*/
+				for(int i=0;i<a.size();i++)
+				{
+					Stack<Integer> pila=new Stack<Integer>();
+					Queue<Integer> cola=new LinkedList<Integer>();
+					int num=0;
+					while(true)
+					{
+						num=st.pop();
+						//o.println("se le agrega "+num+" a la cola");
+						cola.offer(num);
+						pila.push(num);
+						if(num==a.get(i))
+							break;
+					}
+					int chido=0;
+					
+					if(cola.size() == Arrays.binarySearch(ordenado,num)+1)
+					{
+						while(!pila.isEmpty())
+							st.push(pila.pop());
+						continue;
+					}
+					else
+					{
+						chido=a.size() - cola.size();
+						if(cola.size()>1)
+						{
+							if(puto)
+								o.print(" ");
+							puto=true;
+							o.print(chido+1);
+						}
+						while(!cola.isEmpty())
+							st.push(cola.remove());
+					}	
+						
+					int n=a.size() - i;
+					
+					while(n-->0)
+						cola.offer(st.pop());
+					
+					
+					chido=a.size() - cola.size() + 1;
+					
+					//if(cola.size() > 1 && chido >1)
+					//{
+						if(puto)
+							o.print(" ");
+						puto=true;
+						o.print(chido);
+					//}
+					while(!cola.isEmpty())
+						st.push(cola.remove());
+				}
+				if(puto)
+					o.print(" ");
+				puto=true;
+				o.print("0\n");
+				o.flush();
+			}
+		}
+		catch(Exception e){}
+	}
+}
